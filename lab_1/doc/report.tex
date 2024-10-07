@@ -11,18 +11,33 @@
 \usepackage{multirow}
 \usepackage{tocloft}
 \usepackage{indentfirst} 
+\usepackage{lipsum}
+\usepackage{caption}
+
+\RequirePackage{cmap}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T2A]{fontenc}
+\captionsetup[figure]{name={Рисунок},labelsep=endash}
+\captionsetup[table]{singlelinecheck=false, labelsep=endash}
 
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
-\geometry{pdftex, left = 3cm, right = 1cm, top = 2cm, bottom = 2cm}
+\geometry{pdftex, left = 3cm, right = 1cm	, top = 2cm, bottom = 2cm}
 \onehalfspacing
 
+\setlength{\parindent}{1,25cm}
 \lstdefinestyle{python}{
 	language={Python},
 	basicstyle=\footnotesize\ttfamily,
-	numbers=left,
 	frame=single,
-	tabsize=4,
+	tabsize=4,	
 	breaklines=true
+}
+
+\DeclareCaptionLabelSeparator{line}{\ --\ }
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43,0.35,0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
+\captionsetup[lstlisting]{
+	labelsep=line
 }
 
 \begin{document}
@@ -46,13 +61,13 @@
 
 	\noindent\begin{minipage}{1.0\textwidth}\centering
 		\Large\textbf{   ~~~ Лабораторная работа №1}\newline
-		\textbf{по дисциплине "Анализ алгоритмов"}\newline\newline\newline\newline\newline
+		\textbf{по дисциплине «Анализ алгоритмов»}\newline\newline\newline\newline\newline
 	\end{minipage}
 
 	\noindent\textbf{Тема} \underline{Алгоритмы Левенштейна и Дамерау-Левенштейна}\newline\newline
 	\textbf{Студент} \underline{Тузов Даниил Александрович}\newline\newline
 	\textbf{Группа} \underline{ИУ7-52Б}\newline\newline
-	\textbf{Преподаватель} \underline{Строганов Дмитрий Владимирович}
+	\textbf{Преподаватель} \underline{Кормановский Михаил Владимирович}
 	
 	\begin{center}
 		\vfill
@@ -62,12 +77,12 @@
 	\clearpage
 \end{titlepage}
 
-\renewcommand{\contentsname}{Содержание} 
+\renewcommand{\contentsname}{СОДЕРЖАНИЕ} 
 \tableofcontents
 \setcounter{page}{2}
 \clearpage
 
-\section*{Введение}
+\section*{ВВЕДЕНИЕ}
 \addcontentsline{toc}{section}{ВВЕДЕНИЕ}
 В первой лабораторной работе по анализу алгоритмов рассматривается понятие расстояния Левенштейна. 
 Это самое расстояние показывает минимальное количество операций вставки, удаления и замены, которое 
@@ -76,16 +91,17 @@
 Целью лабораторной работы является изучение алгоритмов нахождения расстояния Левенштейна.
 Для достижения поставленной цели небходимо решить следующие задачи:
 \begin{itemize}
-	\item изучить понятие расстояния Левенштейна и расстояние Дамерау-Левенштейна
+	\item изучить способы нахождения расстояния между строками: а именно расстояний Левенштейна и  
+	Дамерау-Левенштейна;
 	\item реализовать алгоритмы для нахождения искомого расстояния:
 	\begin{itemize}
-		\item рекурсивный алгоритм
-		\item рекурсивный алгоритм с кэшированием
-		\item нерекурсивный алгоритм, основанный на динамическом программировании
-		\item алгоритм нахождения расстояния Дамерау-Левенштейна
+		\item рекурсивный алгоритм;
+		\item рекурсивный алгоритм с кэшированием;
+		\item нерекурсивный алгоритм, основанный на динамическом программировании;
+		\item алгоритм нахождения расстояния Дамерау-Левенштейна;
 	\end{itemize}
-	\item сравнить алгоритмы по затраченному процессорному времени и памяти
-	\item обосновать полученные результаты
+	\item сравнить алгоритмы по затраченному процессорному времени и памяти;
+	\item обосновать полученные результаты.
 \end{itemize}
 
 
@@ -161,64 +177,64 @@
 
 
 \clearpage\section{Конструкторская часть}
-В этой части представлены схемы алгоритмов.
+В этой части представлены описания алгоритмов.
 
-\subsection{Схемы алгоритмов}
+\subsection{Описание алгоритмов}
 На вход алгоритмам подаются строки $S_{1}$ и $S_{2}$ (в реализации с кэширование подается еще и кэш-матрица), на 
 выходе единственное число -- искомое расстояние.
 
-На рисунках \ref{fig:rec_lev} - \ref{fig:dlev} приведены схемы алгоритмов.
+На рисунках \ref{fig:rec_lev} - \ref{fig:dlev} приведены описания алгоритмов.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{tools/alg_1.png}
-	\caption{Схема рекурсивного алгоритма нахождения расстояния Левенштейна}
+	\caption{Описание рекурсивного алгоритма нахождения расстояния Левенштейна}
 	\label{fig:rec_lev}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{tools/alg_2.png}
-	\caption{Схема рекурсивного алгоритма нахождения расстояния Левенштейна с кэшированием}
+	\caption{Описание рекурсивного алгоритма нахождения расстояния Левенштейна с кэшированием}
 	\label{fig:rec_lev_cache}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=1.0]{tools/alg_2_subp.png}
-	\caption{Схема подпрограммы subp, вызываемой в алгоритме с кэшированием}
+	\caption{Описание подпрограммы subp, вызываемой в алгоритме с кэшированием}
 	\label{fig:rec_lev_cache_subp}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.9]{tools/alg_3.png}
-	\caption{Схема нерекурсивного алгоритма нахождения расстояния Левенштейна}
+	\caption{Описание нерекурсивного алгоритма нахождения расстояния Левенштейна}
 	\label{fig:lev}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.9]{tools/alg_4.png}
-	\caption{Схема нерекурсивного алгоритма нахождения расстояния Дамерау-Левенштейна}
+	\caption{Описание нерекурсивного алгоритма нахождения расстояния Дамерау-Левенштейна}
 	\label{fig:dlev}
 \end{figure}
 
 \clearpage\subsection{Вывод}
-В этом разделе на основе теоретических аспектов были представлены схемы рекурсивного алгоритма, рекурсивного алгоритма
-с кэшированием, нерекурсивного алгоритма, основанного на динамическом программировании, а также схема алгоритма
-Дамерау-Левенштейна.
+В этом разделе на основе теоретических аспектов были представлены описания рекурсивного алгоритма, рекурсивного 
+алгоритма с кэшированием, нерекурсивного алгоритма, основанного на динамическом программировании, а также описание 
+алгоритма Дамерау-Левенштейна.
 
 
 \clearpage\section{Технологическая часть}
-В этом разделе обоснованы средства реализации, а так же представлены листинги кодов алгоритмов и функциональные тесты.
+В этом разделе обоснованы средства реализации, а так же представлены реализации алгоритмов и функциональные тесты.
 
 \subsection{Средства реализации}
-Для реализации алгоритмов в этой лабораторной работы был выбран язык $Python$ [2], потому что он прост в
-работе, а также в нем нет автоматического сборщика мусора. Время работы было замерено с помощью функции
+Для реализации алгоритмов в этой лабораторной работы был выбран язык $Python$ [2], потому что в нем нет 
+автоматического сборщика мусора. Время работы было замерено с помощью функции
 \textit{process\_time} [1] из библиотеки $time$. [3]
 
-\subsection{Листинги кодов алгоритмов}
+\subsection{Реализация алгоритмов}
 В листингах \ref{lst:rec_alg} - \ref{lst:damerau_alg} представлены коды написанных алгоритмов.
 
 \begin{lstlisting}[style=python, label=lst:rec_alg,caption=Рекурсивный алгоритм]
@@ -310,7 +326,7 @@ def damerau_alg(s1, s2):
 В таблице \ref{tbl:func_test} приведены функциональные тесты, на которых тестировалась программа.
 \begin{table}[h]
 	\begin{center}
-	\caption{\label{tbl:func_test} Функциональные тесты}
+	\caption{\label{tbl:func_test} Функциональные тесты, на которых были протестированы алгоритмы}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		$S_{1}$ & $S_{2}$ & Левенштейн &  Дамерау-Левенштейн
@@ -338,7 +354,7 @@ def damerau_alg(s1, s2):
 \end{table}
 
 \subsection{Вывод}
-В этом разделе на основе схем алгоритмов были написаны и представлены листинги кода. Помимо алгоритмов
+В этом разделе на основе описаний алгоритмов были написаны и представлены коды алгоритмов. Помимо кодов
 представлены функциональные тесты, на которых был протестирован каждый алгоритм.
 
 
@@ -348,7 +364,7 @@ def damerau_alg(s1, s2):
 \subsection{Технические характеристики ЭВМ}
 Все замеры проводились на ЭВМ, характеристики которой приведены ниже:
 \begin{itemize}
-	\item Процессор -- 12th Gen Intel(R) Core(TM) i5-12450H   2.00 GHz
+	\item Процессор -- 12th Gen Intel(R) Core(TM) i5-12450H   2.00 ГГц
 	\item Оперативная память -- 16,0 ГБ
 	\item Тип системы -- 64-разрядная операционная система, процессор x64
 	\item Операционная система -- Windows 11
@@ -356,7 +372,7 @@ def damerau_alg(s1, s2):
 \end{itemize}
 
 \subsection{Сравнение  по времени}
-Время выполнения работы алгоритмов представлено в секундах. Проводилось 150 замеров.
+Время выполнения работы алгоритмов представлено в миллисекундах. Проводилось 150 замеров.
 
 \begin{table}[h]
 	\begin{center}
@@ -365,23 +381,15 @@ def damerau_alg(s1, s2):
 		\hline
 		Размер строк & Рекурсивный & C кэшем &  Нерекурсивный & Дамерау
 		\\ \hline
-		1 & 0 & 0 & 0 & 0
+		5 & 0.6 & 1 & 0.0001 & 0.0001
 		\\ \hline
-		2 & 0 & 0 & 0 & 0
+		6 & 2 & 1 & 0.0001 & 0.0001
 		\\ \hline
-		3 & 0 & 0 & 0 & 0
+		7 & 10 & 5 & 0.0004 & 0.0002
 		\\ \hline
-		4 & 0 & 0 & 0 & 0
+		8 & 30 & 30 & 0.0003 & 0.0003
 		\\ \hline
-		5 & 0 & 0.001 & 0 & 0
-		\\ \hline
-		6 & 0.02 & 0.001 & 0 & 0
-		\\ \hline
-		7 & 0.01 & 0.005 & 0 & 0
-		\\ \hline
-		8 & 0.03 & 0.03 & 0 & 0
-		\\ \hline
-		9 & 0.145 & 0.113 & 0 & 0
+		9 & 145 & 113 & 0.0004 & 0.0005
 		\\ \hline
 	\end{tabular}
 	\end{center}
@@ -432,19 +440,19 @@ def damerau_alg(s1, s2):
 \clearpage\begin{table}[h]
 	\begin{center}
 	\caption{\label{tbl:mem_comp} Сравнение по памяти двух строк длины N и M соответственно}
-	\begin{tabular}{|c|c|c|c|c|}
+	\begin{tabular}{|r|r|r|r|r|}
 		\hline
 		N & M & Рекурсивно, байт &  Рекурсивно + кэш, байт & Нерекурсивно, байт
 		\\ \hline
 		10 & 10 & 20 & 141 & 141
 		\\ \hline
-		100 & 100 & 200 & 10401 & 10401
+		100 & 100 & 200 & 10,401 & 10,401
 		\\ \hline
-		200 & 200 & 400 & 40801 & 40801
+		200 & 200 & 400 & 40,801 & 40,801
 		\\ \hline
-		500 & 500 & 1000 & 252001 & 252001
+		500 & 500 & 1000 & 252,001 & 252,001
 		\\ \hline
-		1000 & 1000 & 2000 & 1004001 & 1004001
+		1000 & 1000 & 2000 & 1,004,001 & 1,004,001
 		\\ \hline
 		n & m & n + m & n * m + n + m & n * m + n + m
 		\\ \hline
@@ -461,28 +469,29 @@ def damerau_alg(s1, s2):
 двух символов строки.
 
 
-\clearpage\section*{Заключение}
+\clearpage\section*{ЗАКЛЮЧЕНИЕ}
 \addcontentsline{toc}{section}{ЗАКЛЮЧЕНИЕ}
 В ходе выполнения лабораторной работы поставленная цель была достигнута, а также были решены следующие задачи:
 \begin{itemize}
-	\item изучены алгоритмы Левенштейна и Дамерау-Левенштейна
-	\item реализованы алгоритмы на языке $Python$ 
-	\item проведено сравнение алгоритмов по времени и памяти
-	\item описаны и обоснованы полученные результаты
+	\item изучены алгоритмы Левенштейна и Дамерау-Левенштейна;
+	\item реализованы алгоритмы на языке $Python$; 
+	\item проведено сравнение алгоритмов по времени и памяти:
+	\begin{itemize}
+		\item рекурсивные алгоритмы работают намного дольше, чем нерекурсивные алгоритмы;
+		\item простой рекурсивный алгоритм расходует меньше  памяти, чем все остальные;
+		\item нерекурсивный алгоритм Дамерау-Левенштейна медленнее, чем нерекурсивный алгоритм Левенштейна;
+	\end{itemize}
+	\item описаны и обоснованы полученные результаты.
 \end{itemize} 
 
-\renewcommand{\bibname}{Список использованной литературы}
-\clearpage\begin{thebibliography}{4}
-	\bibitem{bib1}
-	process\_time --  https://docs.python.org/3/library/time.html\#functions
-	\bibitem{bib2}
-	Welcome to Python -- https://www.python.org
-	\bibitem{bib3}
-	Библиотека time -- https://docs.python.org/3/library/time.html
-	\bibitem{bib4}
-	Левенштейн В. И. Двоичные коды с исправлением выпадений, вставок и замещений символов. – М.: Доклады АН 
+\clearpage\section*{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+\addcontentsline{toc}{section}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+\begin{enumerate}
+	\item process\_time --  https://docs.python.org/3/library/time.html\#functions
+	\item Welcome to Python -- https://www.python.org
+	\item	Библиотека time -- https://docs.python.org/3/library/time.html
+	\item	Левенштейн В. И. Двоичные коды с исправлением выпадений, вставок и замещений символов. – М.: Доклады АН 
 	СССР, 1965. Т. 163. С. 845– 848.
-\end{thebibliography}
-\addcontentsline{toc}{section}{СПИСОК ИСПОЛЬЗОВАННОЙ ЛИТЕРАТУРЫ}
+\end{enumerate}
 
 \end{document}

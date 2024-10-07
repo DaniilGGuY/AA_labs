@@ -49,3 +49,6 @@ def testing():
     print("Test7 OK") if damerau_alg("морковка", "сосиска") == 5 else print("ERROR")
     print("Test8 OK") if damerau_alg("мама", "амам") == 2 else print("ERROR")
     print("Test9 OK") if damerau_alg("мамам", "мамам") == 0 else print("ERROR")
+
+if __name__ == '__main__':
+    testing()
