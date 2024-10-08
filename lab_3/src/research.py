@@ -16,10 +16,10 @@ def research():
         binary_sort_arr_comps[i] = binary_search(arr2, arr[i])[1]
 
 
-    fig = plt.subplots(figsize=(10, 8))
+    fig = plt.subplots(figsize=(8, 4))
     plt.xlabel("Позиция элементов в массиве")
     plt.ylabel("Количество сравнений")
-    #plt.bar([i for i in range(VARIANT)], linear_arr_comps)
+    plt.bar([i for i in range(VARIANT)], linear_arr_comps)
     #plt.bar([i for i in range(VARIANT)], binary_sort_arr_comps)
     #plt.bar([i for i in range(VARIANT)], sorted(binary_sort_arr_comps))
     plt.show()
