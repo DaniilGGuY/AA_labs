@@ -1,0 +1,119 @@
+\documentclass{article}
+
+\usepackage[english, russian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[14pt]{extsizes}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{tocloft}
+\usepackage{indentfirst} 
+\usepackage{lipsum}
+\usepackage{caption}
+\usepackage{cmap}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+
+\captionsetup[figure]{name={Рисунок},labelsep=endash}
+\captionsetup[table]{singlelinecheck=false, labelsep=endash}
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\geometry{pdftex, left = 3cm, right = 1cm	, top = 2cm, bottom = 2cm}
+\onehalfspacing
+
+\setlength{\parindent}{1,25cm}
+\lstdefinestyle{python}{
+	language={Python},
+	basicstyle=\footnotesize\ttfamily,
+	frame=single,
+	tabsize=4,	
+	breaklines=true
+}
+
+\DeclareCaptionLabelSeparator{line}{\ --\ }
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43,0.35,0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
+\captionsetup[lstlisting]{
+	singlelinecheck=false,
+	labelsep=line
+}
+
+\begin{document}
+\begin{titlepage}
+	\newgeometry{pdftex, left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+	\fontsize{12pt}{12pt}\selectfont
+	\noindent\begin{tabular}{|c|c|}	\hline
+	\noindent\begin{minipage}{0.15\textwidth}
+		\includegraphics[width=\linewidth]{tools/logo.png}
+	\end{minipage} &
+	\noindent\begin{minipage}{0.85\textwidth}\centering
+		\textbf{\newline Министерство науки и высшего образования Российской Федерации}\\
+		\textbf{Федеральное государственное бюджетное образовательное учреждение высшего образования}\\
+		\textbf{«Московский государственный технический университет имени Н.Э.~Баумана}\\
+		\textbf{(национальный исследовательский университет)»}\\
+		\textbf{(МГТУ им. Н.Э.~Баумана)}
+	\end{minipage} \\
+	\hline	\end{tabular}\newline\newline\newline
+	\noindent ФАКУЛЬТЕТ \underline{«Информатика и системы управления»} \newline\newline
+	\noindent КАФЕДРА \underline{«Программное обеспечение ЭВМ и информационные технологии»}\newline\newline\newline\newline\newline\newline
+
+	\noindent\begin{minipage}{1.0\textwidth}\centering
+		\Large\textbf{   ~~~ Лабораторная работа №4}\newline
+		\textbf{по дисциплине «Анализ алгоритмов»}\newline\newline\newline\newline\newline
+	\end{minipage}
+
+	\noindent\textbf{Тема} \underline{Параллельные вычисления на основе нативных потоков}\newline\newline
+	\textbf{Студент} \underline{Тузов Даниил Александрович}\newline\newline
+	\textbf{Группа} \underline{ИУ7-52Б}\newline\newline
+	\textbf{Преподаватель} \underline{Строганов Дмитрий Владимирович}
+	
+	\begin{center}
+		\vfill
+		Москва, \the\year ~г.
+	\end{center}
+	\restoregeometry
+	\clearpage
+\end{titlepage}
+
+\renewcommand{\contentsname}{\begin{center}СОДЕРЖАНИЕ\end{center}} 
+\tableofcontents
+\setcounter{page}{2}
+\clearpage
+
+\begin{center}\section*{ВВЕДЕНИЕ}\end{center}
+\addcontentsline{toc}{section}{ВВЕДЕНИЕ}
+
+
+\clearpage\section{Входные и выходные данные}
+
+
+\clearpage\section{Преобразование входных данных в выходные}
+
+
+\clearpage\section{Тестирование}
+
+
+\clearpage\section{Примеры работы программы}
+
+
+\clearpage\section{Описание исследования}
+
+
+\clearpage\begin{center}\section*{ЗАКЛЮЧЕНИЕ}\end{center}
+\addcontentsline{toc}{section}{ЗАКЛЮЧЕНИЕ}
+
+\clearpage\begin{center}\section*{\normalsizeСПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}\end{center}
+\addcontentsline{toc}{section}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+\begin{enumerate}
+	\item Никлаус Вирт Алгоритмы и структуры данных. Новая версия для Оберона. Никлаус Вирт. [Текст] / М.: ДМК Пресс, 2016 
+— 272 c.
+	\item Welcome to Python / [Электронный ресурс] // Режим доступа: https://\\www.python.org
+	\item	Библиотека random / [Электронный ресурс] // Режим доступа: https://\\docs.python.org/3/library/random.html
+	\item	Библиотека matplotlib / [Электронный ресурс] // Режим доступа: https://\\matplotlib.org
+	\item Утилита coverage / [Электронный ресурс] // Режим доступа: https://\\coverage.readthedocs.io/en/latest/
+\end{enumerate}
+
+\end{document}
