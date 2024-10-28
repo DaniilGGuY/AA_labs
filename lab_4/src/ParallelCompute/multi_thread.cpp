@@ -1,4 +1,5 @@
 #include "multi_thread.h"
+#include <iostream>
 
 void thread_func(std::vector<std::string> *urls, std::string dirname, int index)
 {

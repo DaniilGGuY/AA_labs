@@ -6,6 +6,7 @@
 #include <ctime>
 #include <thread>
 #include <mutex>
+#include <queue>
 
 #include "curl_parse.h"
 
