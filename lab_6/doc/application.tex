@@ -1,0 +1,275 @@
+\documentclass[a4paper, 12pt]{extreport}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsfonts,amsmath,mathtext,cite,enumerate,float}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage[inkscapeformat=png]{svg}
+\usepackage{tocloft}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{tempora}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{indentfirst}
+\usepackage{pdfpages}
+\usepackage{enumerate,letltxmacro}
+\usepackage{threeparttable}
+\usepackage{hyperref}
+\usepackage{flafter}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{longtable}
+\usepackage[figure,table]{totalcount}
+\usepackage{lastpage}
+
+\lstdefinestyle{code}{
+	basicstyle=\footnotesize\ttfamily,
+	frame=single,
+	tabsize=4,	
+	breaklines=true
+}
+
+\setlist{nosep}
+\hypersetup{pdfborder=0 0 0}
+
+\newcommand{\ssr}[1]{\begin{center}\LARGE\bfseries{#1}\end{center} \addcontentsline{toc}{chapter}{#1}  }
+
+\makeatletter
+\renewcommand\LARGE{\@setfontsize\LARGE{22pt}{20}}
+\renewcommand\Large{\@setfontsize\Large{20pt}{20}}
+\renewcommand\large{\@setfontsize\large{16pt}{20}}
+\makeatother
+
+\RequirePackage{titlesec}
+\titleformat{\chapter}[block]{\hspace{\parindent}\large\bfseries}{\thechapter}{0.5em}{\large\bfseries\raggedright}
+\titleformat{name=\chapter,numberless}[block]{\hspace{\parindent}}{}{0pt}{\large\bfseries\centering}
+\titleformat{\section}[block]{\hspace{\parindent}\large\bfseries}{\thesection}{0.5em}{\large\bfseries\raggedright}
+\titleformat{\subsection}[block]{\hspace{\parindent}\large\bfseries}{\thesubsection}{0.5em}{\large\bfseries\raggedright}
+\titleformat{\subsubsection}[block]{\hspace{\parindent}\large\bfseries}{\thesubsection}{0.5em}{\large\bfseries\raggedright}
+\titlespacing{\chapter}{12.5mm}{-22pt}{10pt}
+\titlespacing{\section}{12.5mm}{10pt}{10pt}
+\titlespacing{\subsection}{12.5mm}{10pt}{10pt}
+\titlespacing{\subsubsection}{12.5mm}{10pt}{10pt}
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.}
+\makeatother
+
+\geometry{left=30mm}
+\geometry{right=10mm}
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+
+\onehalfspacing
+
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\labelenumi}{\arabic{enumi}\text{)}}
+\renewcommand{\theenumii}{.\arabic{enumii}}
+\renewcommand{\labelenumii}{\asbuk{enumii}\text{)}}
+\renewcommand{\theenumiii}{.\arabic{enumiii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.}
+
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок}}
+\DeclareCaptionLabelSeparator{dash}{~---~}
+\captionsetup{labelsep=dash}
+
+\captionsetup[figure]{justification=centering,labelsep=dash}
+\captionsetup[table]{labelsep=dash,justification=raggedright,singlelinecheck=off}
+\captionsetup[lstlisting]{labelsep=dash,justification=raggedright,singlelinecheck=off}
+
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\pgfplotsset{width=0.85\linewidth, height=0.5\columnwidth}
+
+\linespread{1.3}
+
+\parindent=1.25cm
+
+\def\labelitemi{---}
+\setlist[itemize]{leftmargin=1.25cm, itemindent=0.65cm}
+\setlist[enumerate]{leftmargin=1.25cm, itemindent=0.55cm}
+
+\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\frenchspacing
+
+
+\begin{document}
+
+\chapter*{ПРИЛОЖЕНИЕ А}
+
+\begin{longtable}{|r|r|r|r|r|r|r|r|r|r|r|r|}
+\caption{Параметризация муравьиного алгоритма (начало)}\label{tbl:param} \\ 
+\hline
+\multicolumn{3}{|c|}{Параметры} & \multicolumn{3}{|c|}{Граф 1} & \multicolumn{3}{|c|}{Граф 2} & \multicolumn{3}{|c|}{Граф 3} \\
+\hline
+$\alpha$ & $\rho$ & $t_{max}$ & min & max & mean & min & max & mean & min & max & mean \\
+\hline\endfirsthead
+\caption{Параметризация муравьиного алгоритма (продолжение)} \\ 
+\hline
+\multicolumn{3}{|c|}{Параметры} & \multicolumn{3}{|c|}{Граф 1} & \multicolumn{3}{|c|}{Граф 2} & \multicolumn{3}{|c|}{Граф 3} \\
+\hline
+$\alpha$ & $\rho$ & $t_{max}$ & min & max & mean & min & max & mean & min & max & mean \\
+\hline\endhead
+\hline
+\endfoot
+\caption{Параметризация муравьиного алгоритма (окончание)}
+\endlastfoot
+\hline
+0.1 & 0.1 & 200 & 2 & 11 & 6.2 & 11 & 20 & 14.8 & 6 & 15 & 11.9 \\ 
+0.1 & 0.1 & 500 & 0 & 7 & 3.6 & 9 & 16 & 13.0 & 3 & 14 & 7.9 \\ 
+0.1 & 0.1 & 1000 & 0 & 6 & 2.9 & 5 & 14 & 9.3 & 2 & 12 & 7.0 \\ 
+0.1 & 0.1 & 1500 & 0 & 3 & 1.2 & 0 & 14 & 9.0 & 5 & 12 & 7.5 \\ 
+0.1 & 0.1 & 2000 & 0 & 3 & 0.8 & 5 & 13 & 8.3 & 3 & 9 & 5.6 \\ 
+\hline
+0.1 & 0.25 & 200 & 1 & 13 & 8.0 & 7 & 17 & 12.9 & 4 & 21 & 12.8 \\ 
+0.1 & 0.25 & 500 & 0 & 9 & 2.7 & 5 & 18 & 13.0 & 8 & 14 & 11.1 \\ 
+0.1 & 0.25 & 1000 & 0 & 5 & 2.2 & 0 & 15 & 8.1 & 3 & 10 & 7.5 \\ 
+0.1 & 0.25 & 1500 & 0 & 3 & 1.2 & 5 & 12 & 8.6 & 1 & 9 & 5.7 \\ 
+0.1 & 0.25 & 2000 & 0 & 3 & 0.9 & 5 & 14 & 9.8 & 1 & 9 & 7.2 \\ 
+\hline
+0.1 & 0.5 & 200 & 3 & 10 & 7.0 & 6 & 19 & 13.1 & 7 & 19 & 13.4 \\ 
+0.1 & 0.5 & 500 & 0 & 5 & 2.3 & 9 & 19 & 13.5 & 4 & 16 & 9.7 \\ 
+0.1 & 0.5 & 1000 & 0 & 5 & 1.4 & 7 & 13 & 9.2 & 1 & 12 & 8.5 \\ 
+0.1 & 0.5 & 1500 & 0 & 6 & 1.7 & 0 & 14 & 9.3 & 3 & 10 & 7.0 \\ 
+0.1 & 0.5 & 2000 & 0 & 3 & 1.1 & 0 & 11 & 7.3 & 4 & 9 & 7.2 \\ 
+\hline
+0.1 & 0.75 & 200 & 1 & 11 & 4.9 & 9 & 19 & 14.5 & 7 & 19 & 13.3 \\ 
+0.1 & 0.75 & 500 & 0 & 8 & 3.8 & 9 & 15 & 11.7 & 8 & 14 & 11.0 \\ 
+0.1 & 0.75 & 1000 & 0 & 5 & 2.2 & 8 & 15 & 12.2 & 2 & 12 & 7.9 \\ 
+0.1 & 0.75 & 1500 & 0 & 5 & 1.2 & 5 & 12 & 8.6 & 4 & 12 & 8.0 \\ 
+0.1 & 0.75 & 2000 & 0 & 3 & 0.8 & 0 & 11 & 6.9 & 0 & 10 & 6.0 \\ 
+\hline
+0.1 & 0.9 & 200 & 1 & 12 & 4.2 & 6 & 19 & 14.4 & 4 & 20 & 13.7 \\ 
+0.1 & 0.9 & 500 & 0 & 7 & 2.4 & 3 & 16 & 12.2 & 5 & 12 & 9.1 \\ 
+0.1 & 0.9 & 1000 & 0 & 5 & 1.9 & 0 & 13 & 9.4 & 4 & 13 & 8.4 \\ 
+0.1 & 0.9 & 1500 & 0 & 3 & 0.8 & 6 & 12 & 9.5 & 0 & 11 & 7.4 \\ 
+0.1 & 0.9 & 2000 & 0 & 6 & 1.8 & 5 & 11 & 8.0 & 1 & 10 & 6.4 \\ 
+\hline
+0.25 & 0.1 & 200 & 0 & 8 & 4.9 & 3 & 20 & 14.2 & 1 & 19 & 13.0 \\ 
+0.25 & 0.1 & 500 & 1 & 6 & 4.0 & 9 & 17 & 12.9 & 5 & 14 & 10.0 \\ 
+0.25 & 0.1 & 1000 & 0 & 3 & 2.0 & 0 & 11 & 6.8 & 5 & 11 & 8.3 \\ 
+0.25 & 0.1 & 1500 & 0 & 3 & 1.0 & 5 & 14 & 8.4 & 6 & 11 & 9.0 \\ 
+0.25 & 0.1 & 2000 & 0 & 2 & 0.8 & 5 & 13 & 9.1 & 2 & 10 & 5.9 \\ 
+\hline
+0.25 & 0.25 & 200 & 0 & 11 & 5.1 & 14 & 19 & 16.6 & 8 & 20 & 14.6 \\ 
+0.25 & 0.25 & 500 & 0 & 7 & 2.2 & 6 & 15 & 11.0 & 2 & 15 & 10.3 \\ 
+0.25 & 0.25 & 1000 & 0 & 3 & 1.3 & 3 & 15 & 9.0 & 2 & 13 & 7.0 \\ 
+0.25 & 0.25 & 1500 & 0 & 3 & 1.4 & 3 & 13 & 8.2 & 2 & 12 & 7.5 \\ 
+0.25 & 0.25 & 2000 & 0 & 3 & 1.3 & 3 & 13 & 10.0 & 4 & 9 & 7.1 \\ 
+\hline
+0.25 & 0.5 & 200 & 0 & 11 & 5.1 & 0 & 19 & 13.1 & 10 & 17 & 13.9 \\ 
+0.25 & 0.5 & 500 & 1 & 6 & 4.2 & 6 & 16 & 11.3 & 8 & 13 & 10.3 \\ 
+0.25 & 0.5 & 1000 & 0 & 7 & 1.3 & 9 & 16 & 11.2 & 3 & 12 & 8.2 \\ 
+0.25 & 0.5 & 1500 & 0 & 2 & 0.8 & 5 & 13 & 9.3 & 3 & 12 & 7.4 \\ 
+0.25 & 0.5 & 2000 & 0 & 3 & 0.8 & 3 & 12 & 8.6 & 2 & 10 & 7.0 \\ 
+\hline
+0.25 & 0.75 & 200 & 0 & 10 & 4.9 & 7 & 21 & 15.6 & 10 & 19 & 14.3 \\ 
+0.25 & 0.75 & 500 & 0 & 6 & 3.6 & 3 & 15 & 10.6 & 6 & 15 & 10.3 \\ 
+0.25 & 0.75 & 1000 & 0 & 3 & 0.9 & 6 & 13 & 10.4 & 4 & 12 & 7.9 \\ 
+0.25 & 0.75 & 1500 & 0 & 3 & 1.3 & 5 & 13 & 9.5 & 3 & 13 & 8.5 \\ 
+0.25 & 0.75 & 2000 & 0 & 2 & 0.3 & 3 & 9 & 7.1 & 2 & 12 & 7.0 \\ 
+\hline
+0.25 & 0.9 & 200 & 0 & 9 & 4.7 & 8 & 20 & 15.1 & 10 & 18 & 13.4 \\ 
+0.25 & 0.9 & 500 & 0 & 5 & 1.9 & 8 & 16 & 11.6 & 8 & 17 & 11.8 \\ 
+0.25 & 0.9 & 1000 & 0 & 3 & 1.2 & 3 & 13 & 8.9 & 3 & 14 & 7.6 \\ 
+0.25 & 0.9 & 1500 & 0 & 4 & 1.1 & 6 & 14 & 10.0 & 6 & 10 & 8.2 \\ 
+0.25 & 0.9 & 2000 & 0 & 3 & 0.4 & 3 & 12 & 7.4 & 4 & 10 & 6.8 \\ 
+\hline
+0.5 & 0.1 & 200 & 1 & 8 & 4.4 & 13 & 24 & 16.6 & 8 & 18 & 14.9 \\ 
+0.5 & 0.1 & 500 & 0 & 4 & 0.8 & 9 & 16 & 11.2 & 5 & 15 & 10.7 \\ 
+0.5 & 0.1 & 1000 & 0 & 4 & 0.9 & 0 & 14 & 9.7 & 1 & 13 & 8.7 \\ 
+0.5 & 0.1 & 1500 & 0 & 3 & 1.0 & 0 & 12 & 8.6 & 5 & 13 & 7.8 \\ 
+0.5 & 0.1 & 2000 & 0 & 2 & 0.2 & 5 & 13 & 8.8 & 6 & 12 & 9.7 \\ 
+\hline
+0.5 & 0.25 & 200 & 0 & 8 & 4.7 & 10 & 19 & 14.0 & 8 & 20 & 13.4 \\ 
+0.5 & 0.25 & 500 & 0 & 6 & 1.7 & 8 & 17 & 12.7 & 5 & 15 & 10.5 \\ 
+0.5 & 0.25 & 1000 & 0 & 6 & 1.2 & 8 & 16 & 11.1 & 3 & 15 & 10.1 \\ 
+0.5 & 0.25 & 1500 & 0 & 3 & 0.9 & 8 & 13 & 11.1 & 2 & 13 & 7.8 \\ 
+0.5 & 0.25 & 2000 & 0 & 3 & 0.5 & 0 & 11 & 6.7 & 5 & 12 & 8.4 \\ 
+\hline
+0.5 & 0.5 & 200 & 0 & 6 & 2.8 & 6 & 19 & 13.3 & 6 & 16 & 12.4 \\ 
+0.5 & 0.5 & 500 & 2 & 5 & 3.2 & 7 & 17 & 12.0 & 7 & 16 & 10.8 \\ 
+0.5 & 0.5 & 1000 & 0 & 3 & 1.6 & 8 & 17 & 11.4 & 4 & 12 & 8.6 \\ 
+0.5 & 0.5 & 1500 & 0 & 3 & 0.9 & 3 & 14 & 9.5 & 4 & 13 & 8.4 \\ 
+0.5 & 0.5 & 2000 & 0 & 1 & 0.1 & 0 & 11 & 7.9 & 5 & 13 & 9.0 \\ 
+\hline
+0.5 & 0.75 & 200 & 1 & 8 & 4.5 & 10 & 19 & 15.1 & 8 & 20 & 16.0 \\ 
+0.5 & 0.75 & 500 & 0 & 3 & 2.1 & 7 & 17 & 11.7 & 5 & 17 & 11.9 \\ 
+0.5 & 0.75 & 1000 & 0 & 3 & 1.2 & 9 & 16 & 11.7 & 5 & 17 & 11.1 \\ 
+0.5 & 0.75 & 1500 & 0 & 3 & 0.6 & 8 & 13 & 10.6 & 4 & 11 & 7.7 \\ 
+0.5 & 0.75 & 2000 & 0 & 2 & 0.3 & 3 & 14 & 8.4 & 0 & 10 & 6.9 \\ 
+\hline
+0.5 & 0.9 & 200 & 0 & 7 & 4.6 & 5 & 20 & 14.5 & 12 & 20 & 16.4 \\ 
+0.5 & 0.9 & 500 & 0 & 6 & 3.5 & 9 & 16 & 12.7 & 5 & 18 & 12.1 \\ 
+0.5 & 0.9 & 1000 & 0 & 3 & 1.2 & 0 & 15 & 9.9 & 5 & 14 & 10.7 \\ 
+0.5 & 0.9 & 1500 & 0 & 3 & 1.5 & 0 & 15 & 9.1 & 6 & 12 & 8.7 \\ 
+0.5 & 0.9 & 2000 & 0 & 2 & 0.4 & 3 & 11 & 7.7 & 1 & 13 & 8.5 \\ 
+\hline
+0.75 & 0.1 & 200 & 0 & 10 & 3.4 & 9 & 20 & 14.9 & 7 & 21 & 15.7 \\ 
+0.75 & 0.1 & 500 & 0 & 3 & 1.4 & 8 & 18 & 13.6 & 6 & 18 & 11.9 \\ 
+0.75 & 0.1 & 1000 & 0 & 2 & 0.2 & 7 & 14 & 10.7 & 7 & 15 & 10.6 \\ 
+0.75 & 0.1 & 1500 & 0 & 5 & 0.7 & 7 & 15 & 10.3 & 1 & 15 & 9.4 \\ 
+0.75 & 0.1 & 2000 & 0 & 3 & 0.3 & 0 & 13 & 8.0 & 2 & 15 & 8.1 \\ 
+\hline
+0.75 & 0.25 & 200 & 0 & 9 & 4.3 & 15 & 25 & 18.7 & 8 & 18 & 15.5 \\ 
+0.75 & 0.25 & 500 & 0 & 5 & 2.2 & 6 & 17 & 13.0 & 2 & 20 & 13.0 \\ 
+0.75 & 0.25 & 1000 & 0 & 3 & 0.7 & 6 & 15 & 11.0 & 6 & 16 & 11.9 \\ 
+0.75 & 0.25 & 1500 & 0 & 2 & 0.3 & 7 & 14 & 10.8 & 7 & 15 & 10.4 \\ 
+0.75 & 0.25 & 2000 & 0 & 0 & 0.0 & 3 & 14 & 9.1 & 5 & 14 & 9.2 \\ 
+\hline
+0.75 & 0.5 & 200 & 2 & 10 & 4.3 & 10 & 23 & 15.8 & 13 & 23 & 16.7 \\ 
+0.75 & 0.5 & 500 & 0 & 3 & 1.3 & 8 & 22 & 13.3 & 6 & 18 & 13.8 \\ 
+0.75 & 0.5 & 1000 & 0 & 0 & 0.0 & 3 & 15 & 10.2 & 5 & 16 & 11.4 \\ 
+0.75 & 0.5 & 1500 & 0 & 0 & 0.0 & 5 & 13 & 9.3 & 7 & 13 & 9.5 \\ 
+0.75 & 0.5 & 2000 & 0 & 0 & 0.0 & 0 & 16 & 8.0 & 4 & 14 & 9.9 \\ 
+\hline
+0.75 & 0.75 & 200 & 0 & 7 & 1.8 & 11 & 21 & 17.2 & 8 & 21 & 17.2 \\ 
+0.75 & 0.75 & 500 & 0 & 3 & 1.4 & 3 & 19 & 10.6 & 11 & 20 & 14.4 \\ 
+0.75 & 0.75 & 1000 & 0 & 2 & 0.3 & 5 & 18 & 10.9 & 8 & 16 & 11.7 \\ 
+0.75 & 0.75 & 1500 & 0 & 2 & 0.3 & 3 & 16 & 9.0 & 3 & 16 & 9.6 \\ 
+0.75 & 0.75 & 2000 & 0 & 1 & 0.1 & 8 & 15 & 10.0 & 7 & 14 & 11.0 \\ 
+\hline
+0.75 & 0.9 & 200 & 0 & 6 & 3.1 & 6 & 22 & 15.4 & 3 & 21 & 15.3 \\ 
+0.75 & 0.9 & 500 & 0 & 3 & 1.6 & 7 & 17 & 12.8 & 7 & 16 & 11.1 \\ 
+0.75 & 0.9 & 1000 & 0 & 3 & 1.1 & 5 & 13 & 9.7 & 5 & 15 & 10.2 \\ 
+0.75 & 0.9 & 1500 & 0 & 0 & 0.0 & 9 & 14 & 10.8 & 8 & 12 & 10.0 \\ 
+0.75 & 0.9 & 2000 & 0 & 3 & 0.3 & 3 & 13 & 8.6 & 5 & 10 & 7.9 \\ 
+\hline
+0.9 & 0.1 & 200 & 0 & 6 & 2.4 & 9 & 26 & 18.4 & 7 & 24 & 17.3 \\ 
+0.9 & 0.1 & 500 & 0 & 3 & 0.6 & 5 & 19 & 13.3 & 5 & 18 & 15.1 \\ 
+0.9 & 0.1 & 1000 & 0 & 1 & 0.1 & 7 & 17 & 12.1 & 8 & 20 & 13.7 \\ 
+0.9 & 0.1 & 1500 & 0 & 2 & 0.2 & 3 & 15 & 9.5 & 9 & 18 & 12.5 \\ 
+0.9 & 0.1 & 2000 & 0 & 1 & 0.1 & 3 & 11 & 7.8 & 6 & 13 & 8.6 \\ 
+\hline
+0.9 & 0.25 & 200 & 0 & 6 & 2.5 & 10 & 18 & 15.8 & 8 & 20 & 14.3 \\ 
+0.9 & 0.25 & 500 & 0 & 3 & 0.6 & 7 & 20 & 14.1 & 11 & 19 & 14.6 \\ 
+0.9 & 0.25 & 1000 & 0 & 3 & 0.3 & 6 & 16 & 12.2 & 8 & 17 & 12.3 \\ 
+0.9 & 0.25 & 1500 & 0 & 2 & 0.2 & 3 & 15 & 9.4 & 7 & 17 & 12.3 \\ 
+0.9 & 0.25 & 2000 & 0 & 0 & 0.0 & 5 & 14 & 9.6 & 5 & 14 & 8.4 \\ 
+\hline
+0.9 & 0.5 & 200 & 0 & 6 & 4.3 & 3 & 21 & 15.2 & 11 & 23 & 17.0 \\ 
+0.9 & 0.5 & 500 & 0 & 3 & 0.7 & 5 & 19 & 11.5 & 11 & 19 & 15.7 \\ 
+0.9 & 0.5 & 1000 & 0 & 3 & 0.5 & 3 & 11 & 8.0 & 1 & 15 & 9.5 \\ 
+0.9 & 0.5 & 1500 & 0 & 1 & 0.1 & 5 & 17 & 10.2 & 7 & 14 & 11.2 \\ 
+0.9 & 0.5 & 2000 & 0 & 0 & 0.0 & 3 & 16 & 10.2 & 5 & 15 & 10.3 \\ 
+\hline
+0.9 & 0.75 & 200 & 0 & 6 & 1.9 & 7 & 24 & 17.1 & 11 & 22 & 16.4 \\ 
+0.9 & 0.75 & 500 & 0 & 3 & 1.1 & 7 & 21 & 12.4 & 7 & 19 & 14.8 \\ 
+0.9 & 0.75 & 1000 & 0 & 3 & 0.5 & 0 & 14 & 10.0 & 1 & 17 & 11.5 \\ 
+0.9 & 0.75 & 1500 & 0 & 0 & 0.0 & 6 & 15 & 9.9 & 5 & 16 & 10.7 \\ 
+0.9 & 0.75 & 2000 & 0 & 2 & 0.2 & 6 & 14 & 10.0 & 8 & 17 & 11.1 \\ 
+\hline
+0.9 & 0.9 & 200 & 0 & 8 & 3.3 & 5 & 26 & 17.1 & 12 & 24 & 17.4 \\ 
+0.9 & 0.9 & 500 & 0 & 3 & 0.8 & 7 & 18 & 13.4 & 8 & 16 & 13.8 \\ 
+0.9 & 0.9 & 1000 & 0 & 2 & 0.2 & 5 & 15 & 9.2 & 7 & 14 & 10.7 \\ 
+0.9 & 0.9 & 1500 & 0 & 0 & 0.0 & 8 & 16 & 11.1 & 5 & 15 & 9.5 \\ 
+0.9 & 0.9 & 2000 & 0 & 0 & 0.0 & 3 & 13 & 9.1 & 5 & 14 & 11.1 \\ 
+\hline
+\end{longtable}
+\end{document}
